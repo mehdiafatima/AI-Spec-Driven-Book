@@ -1,0 +1,113 @@
+---
+sidebar_position: 1
+---
+
+# Chapter 1: Introduction to ROS 2
+
+This chapter introduces the Robot Operating System 2 (ROS 2), a flexible framework for writing robot software. We will cover its core concepts, architecture, and how it facilitates the development of complex robotics applications.
+
+## What is ROS 2?
+
+ROS 2 is a set of software libraries and tools that help you build robot applications. From drivers to state-of-the-art algorithms, and with powerful developer tools, ROS 2 has everything you need for your next robotics project.
+
+### Key Features of ROS 2:
+
+-   **Distributed System**: ROS 2 is designed for distributed systems, allowing components to run on different machines or processes and communicate seamlessly.
+-   **Real-time Capabilities**: Enhanced real-time performance compared to ROS 1, crucial for industrial and safety-critical applications.
+-   **Security**: Built-in security features for authentication, encryption, and access control.
+-   **Multi-platform Support**: Supports Linux, Windows, macOS, and various embedded platforms.
+-   **Quality of Service (QoS)**: Configurable QoS policies for reliable and predictable data delivery.
+
+## Why ROS 2 for Physical AI?
+
+ROS 2 provides a standardized, modular, and robust infrastructure for developing Physical AI systems.
+
+-   **Modular Development**: Break down complex robotic tasks into smaller, manageable ROS 2 components (nodes).
+-   **Hardware Abstraction**: ROS 2 abstracts away hardware specifics, allowing developers to write generic code that can run on different robots.
+-   **Rich Ecosystem**: Access to a vast collection of packages for perception, navigation, manipulation, and more.
+-   **Simulation Integration**: Seamless integration with simulation environments like Gazebo and NVIDIA Isaac Sim.
+
+## ROS 2 Concepts
+
+### Nodes
+
+Nodes are executable processes that perform computation. Each node is responsible for a single, modular purpose (e.g., a node for camera driver, a node for motor control, a node for path planning).
+
+### Topics
+
+Topics are named buses over which nodes exchange messages. Messages are data structures containing information (e.g., sensor readings, motor commands). Nodes communicate asynchronously by publishing messages to topics and subscribing to topics to receive messages.
+
+### Services
+
+Services are a request/reply communication mechanism. A client node sends a request message to a service server node, which performs an action and sends back a response message. Services are synchronous and typically used for discrete actions.
+
+### Actions
+
+Actions are similar to services but provide feedback during execution and allow for preemption. They are suitable for long-running tasks, such as navigating to a goal or performing a complex manipulation sequence.
+
+### Parameters
+
+Parameters are dynamic configuration values that nodes can load at startup or modify during runtime. They allow for flexible adjustment of node behavior without recompiling code.
+
+## ROS 2 Architecture
+
+ROS 2 uses a **DDS (Data Distribution Service)** layer for communication between nodes. DDS is a decentralized, peer-to-peer communication protocol that provides QoS policies and ensures reliable data exchange.
+
+```mermaid
+graph LR
+    A[Node A: Camera Driver] -- Publishes Image --> B(Topic: /camera/image_raw)
+    B -- Subscribes to Image --> C[Node C: Object Detector]
+    C -- Publishes Detections --> D(Topic: /object/detections)
+    D -- Subscribes to Detections --> E[Node E: Robot Controller]
+
+    F[Node F: Navigation Client] -- Request --> G{Service: /navigate_to_pose}
+    G -- Reply --> F
+
+    H[Node H: Gripper Client] -- Goal --> I[/Action: /gripper_command]
+    I -- Feedback --> H
+    I -- Result --> H
+```
+
+## Setting up Your ROS 2 Workspace
+
+A ROS 2 workspace is a directory where you can store your ROS 2 packages (sources, build artifacts, etc.).
+
+1.  **Create a Workspace**:
+    ```bash
+    mkdir -p ~/ros2_ws/src
+    cd ~/ros2_ws/src
+    ```
+2.  **Initialize `colcon`**: `colcon` is the build tool used in ROS 2.
+    ```bash
+    colcon build --symlink-install
+    ```
+    This command will initialize your workspace and build any packages found in the `src` directory.
+3.  **Source the Workspace**:
+    ```bash
+    source ~/ros2_ws/install/setup.bash
+    ```
+    To automatically source your workspace every time you open a new terminal, add this line to your `~/.bashrc` file:
+    ```bash
+    echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
+    ```
+
+## Running Your First ROS 2 Node
+
+Let's try running a simple "talker" and "listener" example.
+
+1.  **Open Terminal 1 (Talker)**:
+    ```bash
+    ros2 run demo_nodes_cpp talker
+    ```
+2.  **Open Terminal 2 (Listener)**:
+    ```bash
+    ros2 run demo_nodes_py listener
+    ```
+    You should see messages being published by the talker and received by the listener, demonstrating inter-node communication via a topic.
+
+## Further Reading
+
+-   [ROS 2 Documentation](https://docs.ros.org/)
+-   [DDS Standard](https://www.omg.org/dds/)
+
+This introduction provides a foundation for understanding ROS 2. Subsequent chapters will delve deeper into specific concepts and practical applications.

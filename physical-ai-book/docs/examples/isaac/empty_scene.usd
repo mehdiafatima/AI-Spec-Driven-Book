@@ -1,0 +1,34 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "World"
+{
+    def Scope "Looks"
+    {
+    }
+
+    def Xform "Env"
+    {
+        def Xform "GroundPlane"
+        {
+            float3 xformOp:scale = (100, 100, 1)
+            float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOp:transformType = ["Omg.UsdGeom.XformOp.TypeScale", "Omg.UsdGeom.XformOp.TypeTranslate"]
+            uniform token xformOp:transformType = "Omg.UsdGeom.XformOp.TypeTransform"
+            uniform bool xformOp:transformType = true
+        }
+
+        def Xform "DefaultLight"
+        {
+            uniform float3 xformOp:scale = (1, 1, 1)
+            uniform float3 xformOp:translate = (0, 0, 0)
+            uniform token[] xformOp:transformType = ["Omg.UsdGeom.XformOp.TypeScale", "Omg.UsdGeom.XformOp.TypeTranslate"]
+            uniform token xformOp:transformType = "Omg.UsdGeom.XformOp.TypeTransform"
+            uniform bool xformOp:transformType = true
+        }
+    }
+}

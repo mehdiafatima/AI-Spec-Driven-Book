@@ -1,0 +1,182 @@
+---
+sidebar_position: 4
+---
+
+# Chapter 4: URDF Robot Modeling
+
+This chapter introduces the Unified Robot Description Format (URDF), an XML format used in ROS 2 to describe all aspects of a robot model. URDF is crucial for visualizing robots, checking collisions, and performing kinematics and dynamics calculations in simulation environments like Gazebo.
+
+## What is URDF?
+
+URDF (Unified Robot Description Format) is an XML file format that represents the kinematic and dynamic properties of a robot. It describes the robot's physical structure, including:
+
+-   **Links**: The rigid bodies of the robot (e.g., base, arm segments, end-effector).
+-   **Joints**: The connections between links, defining their relative motion (e.g., revolute, prismatic, fixed).
+-   **Visual Properties**: How the links should be rendered (e.g., color, texture, mesh files).
+-   **Collision Properties**: How the links interact physically (e.g., collision geometry).
+-   **Inertial Properties**: Mass, center of mass, and inertia tensor for physics simulation.
+
+## Key Elements of URDF
+
+### `<robot>` Tag
+
+The root element of every URDF file. It has a `name` attribute that uniquely identifies the robot.
+
+```xml
+<robot name="my_robot">
+    <!-- Links and Joints go here -->
+</robot>
+```
+
+### `<link>` Tag
+
+Defines a rigid body in the robot. Each link must have a `name` attribute.
+
+```xml
+<link name="base_link">
+    <visual>
+        <geometry>
+            <box size="0.6 0.4 0.2"/>
+        </geometry>
+        <material name="blue">
+            <color rgba="0 0 0.8 1"/>
+        </material>
+    </visual>
+    <collision>
+        <geometry>
+            <box size="0.6 0.4 0.2"/>
+        </geometry>
+    </collision>
+    <inertial>
+        <mass value="10.0"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+</link>
+```
+
+-   **`<visual>`**: Describes the robot's appearance.
+    -   **`<geometry>`**: Defines the shape (box, cylinder, sphere, mesh).
+    -   **`<material>`**: Specifies color and texture.
+-   **`<collision>`**: Defines the robot's collision geometry, often simplified for performance.
+-   **`<inertial>`**: Defines physical properties for dynamics simulation.
+
+### `<joint>` Tag
+
+Defines a connection between two links, specifying their relative motion. Each joint must have a `name`, `type`, `parent` link, and `child` link.
+
+```xml
+<joint name="base_to_arm_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="shoulder_link"/>
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="100" velocity="1.0"/>
+</joint>
+```
+
+-   **`type`**: Common types include `revolute` (rotating), `continuous` (revolute with no limits), `prismatic` (sliding), `fixed` (rigid connection).
+-   **`<parent>` / `<child>`**: Specifies the links connected by the joint.
+-   **`<origin>`**: Defines the transform from the parent link's origin to the child link's origin (position `xyz` and orientation `rpy` - roll, pitch, yaw).
+-   **`<axis>`**: For revolute and prismatic joints, specifies the axis of rotation or translation.
+-   **`<limit>`**: Defines the joint's physical limits (lower/upper position, max effort, max velocity).
+
+## Xacro: Simplifying URDF
+
+Writing large URDF files can be tedious. **Xacro** (XML Macros) is an XML macro language that allows you to use macros, properties, and mathematical expressions to simplify complex URDF files. This prevents repetition and makes models more readable and maintainable.
+
+### Key Xacro Features:
+
+-   **Properties**: Define values once and reuse them (e.g., `$(property name)`).
+-   **Macros**: Define reusable blocks of XML that can be instantiated with different arguments (e.g., `$(macro name arg1:=val1)`).
+-   **Math**: Perform simple mathematical operations directly in the XML.
+
+Example Xacro snippet:
+
+```xml
+<?xml version="1.0"?>
+<robot name="my_robot" xmlns:xacro="http://ros.org/xacro">
+
+    <xacro:property name="PI" value="3.1415926535897931"/>
+    <xacro:property name="wheel_radius" value="0.05"/>
+    <xacro:property name="wheel_width" value="0.02"/>
+
+    <xacro:macro name="wheel_link" params="prefix">
+        <link name="${prefix}_wheel_link">
+            <visual>
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+                </geometry>
+                <material name="black"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <mass value="0.1"/>
+                <origin xyz="0 0 0"/>
+                <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+            </inertial>
+        </link>
+    </xacro:macro>
+
+    <!-- Base link definition -->
+    <link name="base_link"> ... </link>
+
+    <!-- Instantiate wheel macro -->
+    <xacro:wheel_link prefix="left"/>
+    <xacro:wheel_link prefix="right"/>
+
+    <!-- Joint connecting base to left wheel -->
+    <joint name="base_to_left_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_wheel_link"/>
+        <origin xyz="0 0.1 0" rpy="-${PI/2} 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <!-- Joint connecting base to right wheel -->
+    <joint name="base_to_right_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_wheel_link"/>
+        <origin xyz="0 -0.1 0" rpy="${PI/2} 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+</robot>
+```
+
+To process a Xacro file into a standard URDF, use:
+
+```bash
+ros2 run xacro xacro --inorder my_robot.xacro -o my_robot.urdf
+```
+
+## Visualizing URDF Models
+
+ROS 2 provides tools to visualize URDF models.
+
+1.  **`rviz2`**: The primary 3D visualization tool for ROS 2.
+    -   Launch `rviz2`: `ros2 run rviz2 rviz2`
+    -   Add a "RobotModel" display and ensure it's subscribed to the `/robot_description` topic.
+2.  **`joint_state_publisher`**: Publishes sensor_msgs/JointState messages to describe the joint positions.
+3.  **`robot_state_publisher`**: Takes the URDF and `JointState` messages and publishes the robot's full kinematic state as transforms on the `/tf` topic.
+
+To see your robot in `rviz2`:
+
+```bash
+# In one terminal, launch robot state publisher
+ros2 launch urdf_tutorial display.launch.py model:=path/to/your/robot.urdf.xacro # Example using urdf_tutorial
+
+# Or more generally:
+# ros2 run robot_state_publisher robot_state_publisher --ros-args -p robot_description:="`cat path/to/your/robot.urdf`"
+
+# In another terminal, launch rviz2
+ros2 run rviz2 rviz2
+```
+
+## Conclusion
+
+URDF is a powerful tool for defining your robot's physical structure for use in ROS 2 and simulation. By combining links and joints, and leveraging Xacro for modularity, you can create detailed and accurate robot models. The next chapter will focus on Launch Files and Package Management, enabling you to orchestrate complex ROS 2 applications.

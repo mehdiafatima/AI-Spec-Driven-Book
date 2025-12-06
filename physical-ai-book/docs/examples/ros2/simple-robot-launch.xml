@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Placeholder for a simple ROS 2 robot launch file -->
+  <!--
+    This file would typically include:
+    - Robot description (URDF/XACRO)
+    - Joint state publisher
+    - Robot state publisher
+    - Rviz configuration
+    - Potentially other nodes for sensors, control, etc.
+  -->
+
+  <arg name="model" default="$(find xacro)/xacro --inorder '$(find your_robot_description)/urdf/your_robot.urdf.xacro'" />
+  <param name="robot_description" command="$(arg model)" />
+
+  <!-- Start robot state publisher -->
+  <node pkg="robot_state_publisher" exec="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" value="30.0" />
+  </node>
+
+  <!-- Start joint state publisher (if not using a hardware interface) -->
+  <node pkg="joint_state_publisher_gui" exec="joint_state_publisher_gui" name="joint_state_publisher_gui" />
+
+  <!-- Run Rviz -->
+  <node pkg="rviz2" exec="rviz2" name="rviz2" args="-d $(find your_robot_description)/rviz/your_robot.rviz" />
+
+</launch>

@@ -1,0 +1,25 @@
+# Node.js/JavaScript/TypeScript/Docusaurus specific
+node_modules/
+dist/
+build/
+*.log
+.env*
+.docusaurus/
+src/.DS_Store
+yarn-error.log
+npm-debug.log*
+
+# Universal
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+
+# Docusaurus specific (potentially in root, or within the docusaurus project itself)
+physical-ai-book/build/
+physical-ai-book/.docusaurus/
+physical-ai-book/node_modules/
+physical-ai-book/package-lock.json
+physical-ai-book/yarn.lock
