@@ -63,7 +63,7 @@ This section provides assessment questions and hands-on lab exercises to test yo
 **Tasks**:
 
 1.  **Locate Example Script**:
-    -   Navigate to the [Isaac Examples Directory](/docs/examples/isaac/) (`physical-ai-book/docs/examples/isaac/`).
+    -   Navigate to the [Isaac Examples Directory](/docs/examples/isaac/README.md) (`physical-ai-book/docs/examples/isaac/`).
     -   Find `simple_isaac_workflow.py`.
 2.  **Understand the Script**:
     -   Open `simple_isaac_workflow.py` and review its contents.

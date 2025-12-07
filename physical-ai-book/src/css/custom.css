@@ -28,3 +28,43 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Footer specific styles */
+.footer {
+  /* Subtle gradient for section separation */
+  background: linear-gradient(to bottom, var(--ifm-background-color), var(--ifm-footer-background-color));
+  padding-top: 3rem; /* Adjust top padding for separation */
+  position: relative;
+  overflow: hidden; /* Ensures gradient doesn't overflow */
+}
+
+/* Hover effects for footer links */
+.footer a {
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--ifm-color-primary-light); /* Lighter primary color on hover */
+  text-decoration: none; /* Remove underline on hover for a cleaner look */
+}
+
+/* Ensure proper spacing between footer items */
+.footer__links {
+  margin-bottom: 2rem;
+}
+
+.footer__title {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Responsive adjustments for footer */
+@media (max-width: 768px) {
+  .footer {
+    padding-top: 2rem;
+  }
+  .footer__item:not(:last-child) {
+    margin-bottom: 1rem; /* Space between stacked footer columns on mobile */
+  }
+}

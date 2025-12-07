@@ -51,7 +51,7 @@ This section provides assessment questions and hands-on lab exercises to test yo
     -   List the active ROS 2 topics: `ros2 topic list`
     -   Identify topics related to Gazebo.
 3.  **Spawn a Simple Robot**:
-    -   Navigate to the [Gazebo Examples Directory](/docs/examples/gazebo/) (`physical-ai-book/docs/examples/gazebo/`).
+    -   Navigate to the [Gazebo Examples Directory](/docs/examples/gazebo/README.md) (`physical-ai-book/docs/examples/gazebo/`).
     -   Spawn the `simple_robot.urdf` into your running Gazebo world. This typically involves using `ros2 run gazebo_ros spawn_entity.py` (you might need to install `ros_gz_sim_demos` or a similar package providing this).
         ```bash
         # Ensure your current directory is the root of your workspace

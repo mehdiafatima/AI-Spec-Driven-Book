@@ -1,6 +1,7 @@
 ---
-id: digital-twin-workstation
+id: digital-twin-configuration
 title: Digital Twin Workstation Configuration
+slug: /setup-guides/digital-twin-configuration
 ---
 
 # Digital Twin Workstation Configuration

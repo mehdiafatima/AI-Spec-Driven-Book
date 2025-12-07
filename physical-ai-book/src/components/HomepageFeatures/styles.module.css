@@ -1,3 +1,5 @@
+/* src/components/HomepageFeatures/styles.module.css */
+
 .features {
   display: flex;
   align-items: center;
@@ -5,7 +7,27 @@
   width: 100%;
 }
 
+/* REMOVE this line:
 .featureSvg {
   height: 200px;
   width: 200px;
 }
+*/
+
+/* --- NEW ICON STYLES --- */
+.featureIcon {
+  /* You can set a color that matches your Docusaurus theme primary color */
+  color: var(--ifm-color-primary); 
+  /* Add some margin/padding if needed */
+  margin-bottom: 1rem; 
+  /* Increase size if needed, but the 'size={60}' prop in the JS already sets it */
+}
+
+/* New CSS for enhanced content (remains the same as before) */
+
+.ctaSection {
+  padding: 3rem 0;
+  border-radius: var(--ifm-border-radius);
+  text-align: center;
+}
+/* ... rest of the CSS */

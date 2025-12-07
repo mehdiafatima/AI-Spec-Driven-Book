@@ -1,0 +1,19 @@
+feat: Implement full Physical AI & Humanoid Robotics textbook content
+
+This commit implements the full textbook content for "Physical AI & Humanoid Robotics" in the Docusaurus project.
+
+Key changes include:
+- Generation of all content for:
+  - Introduction to Physical AI & Humanoid Robotics (T019-T025)
+  - Setup Guides (T026-T030)
+  - Module 1: ROS 2 (T031-T037)
+  - Module 2: Digital Twin (T038-T041)
+  - Module 3: NVIDIA Isaac (T042-T044)
+  - Module 4: VLA & Humanoids (T045-T047)
+  - References (T048-T050)
+- Updates to `physical-ai-book/sidebars.js` to correctly display all new content and resolve sidebar navigation issues.
+- Creation of a GitHub Actions workflow (`.github/workflows/deploy.yml`) for automated deployment to GitHub Pages (T051-T053).
+- Generation of a final `physical-ai-book/REPORT.md` summarizing the completed tasks (T059).
+- `specs/master/tasks.md` has been updated to mark all tasks as completed.
+
+The implementation follows the plan outlined in `specs/master/plan.md` and addresses all tasks from `specs/master/tasks.md`.

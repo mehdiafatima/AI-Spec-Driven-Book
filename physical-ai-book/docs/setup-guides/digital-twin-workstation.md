@@ -1,5 +1,5 @@
 ---
-
+id: digital-twin-workstation-guide
 sidebar_position: 1
 ---
 
@@ -93,4 +93,4 @@ With your workstation configured, you are ready to proceed with installing speci
 
 -   [ROS 2 Installation Guide](/docs/modules/module-1-ros2/chapter-1-intro) (Coming Soon)
 -   [NVIDIA Isaac Sim Installation Guide](/docs/modules/module-3-isaac/overview) (Coming Soon)
--   [Gazebo Simulation Setup](/docs/examples/gazebo/) (Coming Soon)
+-   [Gazebo Simulation Setup](/docs/examples/gazebo/README.md) (Coming Soon)

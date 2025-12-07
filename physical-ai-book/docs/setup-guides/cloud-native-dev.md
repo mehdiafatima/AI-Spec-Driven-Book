@@ -84,6 +84,6 @@ For advanced Digital Twin development, especially with Isaac Sim, NVIDIA Omniver
 
 With your cloud development environment configured, you are ready to start deploying and simulating complex robotics applications.
 
--   [Digital Twin Workstation Setup Guide](/docs/setup-guides/digital-twin-workstation) (for local machine setup)
+-   [Digital Twin Workstation Setup Guide](/docs/setup-guides/digital-twin-configuration) (for local machine setup)
 -   [NVIDIA Isaac Sim Installation Guide](/docs/modules/module-3-isaac/overview) (Coming Soon)
 -   [ROS 2 Installation Guide](/docs/modules/module-1-ros2/chapter-1-intro) (Coming Soon)
