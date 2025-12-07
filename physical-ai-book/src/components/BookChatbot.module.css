@@ -1,0 +1,235 @@
+.chatbotContainer {
+  position: fixed;
+  right: -250px; /* Hidden by default, showing 50px of the toggle button */
+  bottom: 20px;
+  width: 300px;
+  max-height: 80vh;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overflow: hidden; /* Ensure rounded corners clip content */
+}
+
+.chatbotContainer.open {
+  right: 20px; /* Slides fully into view */
+}
+
+.toggleButton {
+  position: absolute; /* Positioned relative to .chatbotContainer */
+  left: -50px; /* Position to the left of the hidden chat window */
+  top: 50%; /* Vertically center */
+  transform: translateY(-50%); /* Adjust for vertical centering */
+  width: 50px; /* Width of the visible part of the button */
+  height: 50px;
+  background: linear-gradient(90deg, #4CAF50 0%, #689F38 100%); /* Green gradient */
+  color: white;
+  border: none;
+  border-top-left-radius: 10px; /* Rounded top-left corner */
+  border-bottom-left-radius: 10px; /* Rounded bottom-left corner */
+  cursor: pointer;
+  z-index: 1001; /* Above the chatbot container */
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1); /* Shadow to make it pop */
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em; /* Larger icon */
+  line-height: 1;
+}
+
+.toggleButton:hover {
+  background: linear-gradient(90deg, #689F38 0%, #4CAF50 100%); /* Reverse gradient on hover */
+  transform: translateY(-50%) scale(1.05); /* Slight scale on hover */
+}
+
+/* Style for the button when chatbot is open (it becomes a close button) */
+.chatbotContainer.open .toggleButton {
+  background: linear: #f44336; /* Red gradient for close */
+  left: 10px; /* Position inside the open chatbot window */
+  border-radius: 50%; /* Circular close button */
+  width: 30px;
+  height: 30px;
+  top: 10px;
+  transform: none; /* Remove transform */
+  font-size: 1.2em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.chatbotContainer.open .toggleButton:hover {
+  background: linear-gradient(90deg, #d32f2f 0%, #f44336 100%);
+  transform: scale(1.1);
+}
+
+.toggleIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.chatWindow {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative; /* Needed for toggleButton positioning */
+}
+
+.chatHeader {
+  background: linear-gradient(90deg, #4CAF50 0%, #8BC34A 100%);
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.chatHeader::before {
+    content: '🤖';
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.messagesContainer {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background-color: #f9fdf9;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  padding: 10px 15px;
+  border-radius: 18px;
+  max-width: 85%;
+  word-wrap: break-word;
+  line-height: 1.4;
+  font-size: 0.95em;
+  color: #333;
+}
+
+.message.user {
+  background-color: #e6f7ea;
+  align-self: flex-end;
+  margin-left: auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.message.bot {
+  background-color: #ffffff;
+  align-self: flex-start;
+  margin-right: auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+}
+
+.chatInputContainer {
+  display: flex;
+  padding: 15px;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.chatInput {
+  flex-grow: 1;
+  border: 1px solid #c8e6c9;
+  border-radius: 20px;
+  padding: 10px 15px;
+  margin-right: 10px;
+  font-size: 1em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chatInput:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+  outline: none;
+}
+
+.sendButton {
+  background: linear-gradient(90deg, #8BC34A 0%, #689F38 100%);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.sendButton:hover {
+  background: linear-gradient(90deg, #689F38 0%, #8BC34A 100%);
+  transform: translateY(-1px);
+}
+
+.typingIndicatorContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between dots */
+}
+
+.typingDot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: #555; /* Darker gray for dots */
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .chatbotContainer {
+    width: 90vw;
+    right: -90vw; /* Hide completely */
+    left: 5vw; /* Center horizontally */
+    bottom: 10px;
+    max-height: 70vh;
+  }
+
+  .chatbotContainer.open {
+    right: 5vw; /* Position correctly on smaller screens */
+  }
+
+  .toggleButton {
+    left: auto;
+    right: 0;
+    top: auto;
+    bottom: 0;
+    transform: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .toggleButton:hover {
+    transform: scale(1.05);
+  }
+
+  .chatbotContainer.open .toggleButton {
+    left: auto;
+    right: 10px;
+    top: 10px;
+    bottom: auto;
+    width: 35px;
+    height: 35px;
+  }
+}
