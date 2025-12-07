@@ -7,8 +7,8 @@ const config = {
   tagline: 'A comprehensive guide to physical AI and humanoid robotics, built with Docusaurus.',
   favicon: 'img/favicon.ico',
 
-  url: 'https://your-username.github.io',
-  baseUrl: '/physical-ai-book/',
+  url: 'https://physical-ai-book.vercel.ap',
+  baseUrl: '/',
 
   organizationName: 'your-username',
   projectName: 'physical-ai-book',
@@ -38,7 +38,7 @@ const config = {
           onUntruncatedBlogPosts: 'warn',
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: ['./src/css/custom.css'],
         },
       }),
     ],

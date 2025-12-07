@@ -49,8 +49,15 @@ function BookChatbot() {
 
   return (
     <div className={`${styles.chatbotContainer} ${isOpen ? styles.open : ''}`}>
-      <button className={styles.toggleButton} onClick={toggleChatbot} title={isOpen ? 'Close Chat' : 'Open Chat'}>
-        <span className={styles.toggleIcon}>{isOpen ? '✖' : '💬'}</span>
+      <button className={styles.toggleButton} onClick={toggleChatbot}>
+        {isOpen ? (
+          <span className={styles.toggleIcon}>✖</span>
+        ) : (
+          <div className={styles.openChatLabel}>
+            <span className={styles.toggleIcon}>💬</span>
+            <span>Open Chat</span>
+          </div>
+        )}
       </button>
       {isOpen && (
         <div className={styles.chatWindow}>

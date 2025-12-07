@@ -1,89 +1,50 @@
-<!--
-Version change: None -> 0.1.0
-List of modified principles: All principles are new.
-Added sections: Key Standards, Constraints.
-Removed sections: None.
-Templates requiring updates:
-- .specify/templates/plan-template.md (⚠ pending)
-- .specify/templates/spec-template.md (⚠ pending)
-- .specify/templates/tasks-template.md (⚠ pending)
-- All command files in .specify/templates/commands/*.md (⚠ pending)
-- README.md, docs/quickstart.md, or agent-specific guidance files if present (⚠ pending)
-Follow-up TODOs:
-- TODO(RATIFICATION_DATE): Confirm original adoption date
--->
-# Textbook for "Physical AI & Humanoid Robotics" (Hackathon Project) Constitution
+# [PROJECT_NAME] Constitution
+<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
 
 ## Core Principles
 
-### I. Technical Accuracy
-Ensure technical accuracy for all robotics and simulation concepts (ROS 2, Gazebo, Isaac, VLA, Humanoid Kinematics, Digital Twin).
+### [PRINCIPLE_1_NAME]
+<!-- Example: I. Library-First -->
+[PRINCIPLE_1_DESCRIPTION]
+<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
 
-### II. Pedagogical Clarity
-Maintain pedagogical clarity using the pattern: explain → show → apply.
+### [PRINCIPLE_2_NAME]
+<!-- Example: II. CLI Interface -->
+[PRINCIPLE_2_DESCRIPTION]
+<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
 
-### III. System Thinking
-Emphasize system thinking: connect AI models, sensors, simulation, and humanoid robots.
+### [PRINCIPLE_3_NAME]
+<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
+[PRINCIPLE_3_DESCRIPTION]
+<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
 
-### IV. Real-World Feasibility
-Ground every example in real-world feasibility (Jetson kits, RTX workstations, or cloud setups).
+### [PRINCIPLE_4_NAME]
+<!-- Example: IV. Integration Testing -->
+[PRINCIPLE_4_DESCRIPTION]
+<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
 
-### V. Uniformity & Consistency
-Maintain uniform formatting, terminology, and chapter structure.
+### [PRINCIPLE_5_NAME]
+<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
+[PRINCIPLE_5_DESCRIPTION]
+<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
 
-### VI. Post-Step Reporting
-Generate a clear, concise **report after every Spec-Kit step** (constitution → plan → tasks → implement).
+## [SECTION_2_NAME]
+<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
 
-## Key Standards
+[SECTION_2_CONTENT]
+<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
 
-- Chapter/module structure:
-  1. Introduction to Physical AI & Humanoid Robotics
-  2. Setup Guides
-     - Setup Guide: Digital Twin Workstation
-     - Setup Guide: Physical AI Edge Kit
-     - Setup Guide: Cloud-Native Development
-  3. Module 1: ROS 2 (Weeks 3–5)
-     - Module 1: ROS 2
-       - Chapter 1: Introduction to ROS 2
-       - Chapter 2: ROS 2 Nodes and Topics
-       - Chapter 3: Services, Actions, and Parameters
-       - Chapter 4: URDF Robot Modeling
-       - Chapter 5: Launch Files and Package Management
-  4. Module 2: Digital Twin (Weeks 6–7)
-     - Module 2: Digital Twin
-  5. Module 3: NVIDIA Isaac (Weeks 8–10)
-     - Module 3: Isaac Sim
-  6. Module 4: VLA & Humanoids (Weeks 11–13)
-  7. References
+## [SECTION_3_NAME]
+<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
 
-- All technical claims must be validated with official sources (NVIDIA, ROS 2, OpenAI, Unitree).
-- Simulation examples must follow Gazebo, Isaac Sim, or Unity constraints.
-- Hardware-related examples must be executable on RTX or Jetson hardware.
-- Use Markdown with optional Docusaurus MDX components.
-- Keep consistent headers, callouts, and code formatting.
-- After every Spec-Kit output, a structured **progress report** must be generated, summarizing decisions, changes, and next steps.
-
-## Constraints
-
-- Full 13-week course coverage across modules + setup guides + references.
-- Must comply with Docusaurus v3 structure and sidebar organization.
-- All content generated and organized through Spec-Kit Plus prompts.
-- Required software stack: ROS 2 Humble, Gazebo (Fortress/Ignition), Isaac Sim 4.x, Unity (optional).
-- Must support both workstation and cloud (AWS/Omniverse) compute paths.
-- Use only open-source or educational-license diagrams/code.
-- Every phase produces a **report** summarizing quality checks, coverage, and pending tasks.
+[SECTION_3_CONTENT]
+<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
 
 ## Governance
-- **Success Criteria:**
-  - Students can complete the capstone: "Humanoid robot receives a voice command → plans → navigates → perceives → manipulates an object."
-  - All 13 weeks include theory, labs, and assessments.
-  - ROS 2 code launches cleanly; Gazebo worlds load; Isaac Sim workflows are valid.
-  - Entire book maintains consistency in terminology and chapter structure.
-  - Docusaurus build passes without MDX errors and deploys successfully to GitHub Pages.
-  - Each Spec-Kit phase includes a **report** validating completeness and readiness for the next step.
+<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-- **Amendment Procedure:** Amendments require documentation, approval, and a migration plan.
-- **Versioning Policy:** Semantic versioning will be used for constitution updates (MAJOR.MINOR.PATCH).
-- **Compliance Review:** All PRs/reviews must verify compliance with these principles.
+[GOVERNANCE_RULES]
+<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
 
-**Version**: 0.1.0 | **Ratified**: TODO(RATIFICATION_DATE): Confirm original adoption date | **Last Amended**: 2025-12-06
+**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
+<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
