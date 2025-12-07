@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import os
 from dotenv import load_dotenv
@@ -62,6 +63,21 @@ async def get_embedding(text: str) -> list[float]:
     return response["embedding"]
 
 app = FastAPI()
+
+# Add CORS middleware
+origins = [
+    "http://localhost:3000",  # Default Docusaurus development port
+    "http://127.0.0.1:3000",
+    # Add your production frontend URL here when deploying
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def read_root():
