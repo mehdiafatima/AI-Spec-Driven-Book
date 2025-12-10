@@ -1,43 +1,9 @@
-
-
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
-
-/* You can override the default Infima variables here. */
-:root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-}
-
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
-}
-
 /* Footer specific styles */
 .footer {
-  /* Subtle gradient for section separation */
-  background: linear-gradient(to bottom, var(--ifm-background-color), var(--ifm-footer-background-color));
+  background: #000; /* Footer ka background black */
   padding-top: 3rem; /* Adjust top padding for separation */
   position: relative;
-  overflow: hidden; /* Ensures gradient doesn't overflow */
+  overflow: hidden; /* Ensures content doesn't overflow */
 }
 
 /* Hover effects for footer links */
@@ -46,8 +12,8 @@
 }
 
 .footer a:hover {
-  color: var(--ifm-color-primary-light); /* Lighter primary color on hover */
-  text-decoration: none; /* Remove underline on hover for a cleaner look */
+  color: var(--ifm-color-primary-light); /* Lighter green on hover */
+  text-decoration: none;
 }
 
 /* Ensure proper spacing between footer items */
