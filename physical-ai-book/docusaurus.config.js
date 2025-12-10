@@ -83,28 +83,17 @@ const config = {
             ],
           },
           {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              { label: 'Discord', href: 'https://discordapp.com/invite/docusaurus' },
-              { label: 'X', href: 'https://x.com/docusaurus' },
-            ],
-          },
-          {
             title: 'More',
             items: [
               { label: 'Blog', to: '/blog' },
-              { label: 'GitHub', href: 'https://github.com/physical-ai-book/physical-ai-book' }, // Updated GitHub link
+              { label: 'GitHub', href: 'https://github.com/mehdiafatima/AI-Spec-Driven-Book/tree/main' }, // Updated GitHub link
             ],
           },
         ],
         copyright: `© 2025 Physical AI & Humanoid Robotics. Built with Docusaurus.`, // Updated copyright
       },
       prism: {
-        theme: prismThemes.github,
+        theme: prismThemes.dracula,
         darkTheme: prismThemes.dracula,
       },
     }),

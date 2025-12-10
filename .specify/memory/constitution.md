@@ -1,50 +1,48 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: 1.0.0 → 1.1.0
+- Modified principles:
+  - PRINCIPLE_1_NAME: "Project Scope and Backend Focus" → "RAG-Powered Backend Architecture"
+  - PRINCIPLE_2_NAME: "Tech Stack Adherence" (new)
+  - PRINCIPLE_3_NAME: "Incremental Development" → "Environment and Dependency Management"
+  - PRINCIPLE_4_NAME: "Document Ingestion Excellence" (new)
+  - PRINCIPLE_5_NAME: "OpenAI Agents SDK Requirement" (new)
+- Added sections: Additional Constraints (Section 2) and Development Workflow (Section 3)
+- Removed sections: None
+- Templates requiring updates: ✅ plan-template.md (updated), ✅ spec-template.md (updated), ✅ tasks-template.md (updated)
+- Follow-up TODOs: None
+-->
+
+# Physical AI & Humanoid Robotics — Backend Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### RAG-Powered Backend Architecture
+Backend systems must be built around Retrieval-Augmented Generation (RAG) principles for the Physical AI & Humanoid Robotics book. Every feature must integrate with the RAG pipeline, supporting both full-book QA and selected-text QA modes. Architecture must support document ingestion, vector storage in Qdrant, and OpenAI Agents SDK integration.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Tech Stack Adherence
+Use only the locked tech stack: FastAPI, Uvicorn, Pydantic, Requests, python-dotenv, qdrant-client, OpenAI Agents SDK, Gemini API, markdown-it-py, pymupdf, html2text, python-frontmatter. No additional dependencies without explicit justification and approval.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Environment and Dependency Management
+All environment variables must be loaded from the existing .env file. Never recreate environment files or folders that already exist. Respect existing project structure in /physical-ai-book/backend and extend only when necessary.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Document Ingestion Excellence
+Document processing must handle markdown, PDF, and HTML formats using specified libraries. Each chunk must preserve metadata and maintain traceability to original source. Text splitting must optimize for RAG retrieval quality and Gemini embedding generation.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### OpenAI Agents SDK Requirement
+All chat completion functionality must use the OpenAI Agents SDK as the primary interface. Agents must have access to RAG retrieval as a tool, support Gemini as internal model provider, refuse hallucination, and cite which chapter chunks were used in responses.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Additional Constraints
+<!-- Additional Constraints, Security Requirements, Performance Standards, etc. -->
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+Backend code must be located exclusively in `/physical-ai-book/backend`. No frontend or Docusaurus tasks allowed. Performance, clarity, and maintainability are top priorities. Every function must be deterministic and testable. API endpoints must include health checks and statistics reporting.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Development Workflow
+<!-- Development Workflow, Review Process, Quality Gates, etc. -->
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Development must follow the existing backend folder structure. All work extends, optimizes, or fills in missing pieces rather than recreating structures. Code reviews must verify compliance with RAG architecture, tech stack adherence, and environment management constraints.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+Constitution supersedes all other practices. All PRs/reviews must verify compliance with RAG architecture, tech stack requirements, and existing structure preservation. Complexity must be justified with clear performance or maintainability benefits.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.1.0 | **Ratified**: TODO(RATIFICATION_DATE): Date of original adoption | **Last Amended**: 2025-12-08

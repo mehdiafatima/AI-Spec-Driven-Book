@@ -8,6 +8,16 @@ src/.DS_Store
 yarn-error.log
 npm-debug.log*
 
+# Python specific
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+*.egg-info/
+*.log
+.env*
+
 # Universal
 .DS_Store
 Thumbs.db

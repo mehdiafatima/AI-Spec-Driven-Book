@@ -2,46 +2,85 @@ import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 import { motion } from 'framer-motion';
+import { FaBook, FaRobot, FaMicrochip, FaCogs, FaLightbulb } from 'react-icons/fa';
 
-// 💡 Import the React Icons you want to use
-// Using Font Awesome (Fa) as an example. You can choose others like Md, Io, etc.
-import { FaBook, FaRobot, FaMicrochip, FaCogs } from 'react-icons/fa';
-
-// --- Revised Feature List with Icon Components ---
+// --- Feature List ---
 const FeatureList = [
   {
     title: '📘 Core AI Principles',
-    Icon: FaMicrochip, // Using an Icon component directly
+    Icon: FaMicrochip,
     description: (
       <>
-        Dive deep into the fundamental **Machine Learning** and **Deep Learning**
+        Dive deep into fundamental **Machine Learning** and **Deep Learning**
         algorithms that power intelligent physical systems.
       </>
     ),
   },
   {
     title: '🦾 Humanoid Mechanics',
-    Icon: FaRobot, // Using an Icon component directly
+    Icon: FaRobot,
     description: (
       <>
-        Explore the **kinematics, dynamics, and control systems** essential for
-        designing and programming bipedal robots and human-like actions.
+        Explore **kinematics, dynamics, and control systems** essential for
+        bipedal robots and human-like motion.
       </>
     ),
   },
   {
     title: '🔧 Hands-On Implementation',
-    Icon: FaCogs, // Using an Icon component directly
+    Icon: FaCogs,
     description: (
       <>
-        Includes **practical case studies and code examples** using popular
-        robotics frameworks like **ROS** and Python libraries.
+        Includes **practical case studies and code examples** using robotics
+        frameworks like **ROS** and Python libraries.
+      </>
+    ),
+  },
+  {
+    title: '📡 Sensor & Perception Systems',
+    Icon: FaBook,
+    description: (
+      <>
+        Learn about **sensor fusion, LiDAR, and vision systems** critical for
+        robot perception and environment interaction.
+      </>
+    ),
+  },
+  {
+    title: '⚖️ Ethics & Safety in AI',
+    Icon: FaLightbulb,
+    description: (
+      <>
+        Understand **ethical AI, human-robot interaction**, and safety measures
+        for real-world humanoid systems.
       </>
     ),
   },
 ];
 
-// --- Feature Component (Updated to use Icon prop) ---
+// --- Topics ---
+const ContentTopics = [
+  'Reinforcement Learning in Robotics',
+  'Sensor Fusion & Perception',
+  'Gait Generation and Balance Control',
+  'Ethics and Safety in Humanoid AI',
+  'Advanced Manipulation Techniques',
+  'Real-Time Control Systems',
+];
+
+// --- Testimonials ---
+const Testimonials = [
+  {
+    quote: 'A must-read for anyone serious about humanoid robotics.',
+    author: 'Dr. Sarah Lee, Robotics Expert',
+  },
+  {
+    quote: 'Practical, hands-on, and perfectly structured.',
+    author: 'Alex Kim, AI Researcher',
+  },
+];
+
+// --- Feature Component ---
 function Feature({ Icon, title, description, index }) {
   return (
     <motion.div
@@ -53,7 +92,6 @@ function Feature({ Icon, title, description, index }) {
       whileHover={{ scale: 1.05 }}
     >
       <div className="text--center">
-        {/* Render the Icon component here, passing size and className for styling */}
         <Icon className={styles.featureIcon} size={60} aria-label={`${title} icon`} />
       </div>
       <div className="text--center padding-horiz--md">
@@ -64,36 +102,8 @@ function Feature({ Icon, title, description, index }) {
   );
 }
 
-// --- The rest of the components remain the same ---
-
-// 2. Call-to-Action Component
-function CallToAction() {
-  // ... (Component code remains the same as before)
-  return (
-    <motion.div
-      className={clsx('hero hero--primary margin-top--xl', styles.ctaSection)}
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, amount: 0.5 }}
-      transition={{ duration: 0.6 }}
-    >
-     
-    </motion.div>
-  );
-}
-
-// 3. Content Preview Section
-const ContentTopics = [
-  'Reinforcement Learning in Robotics',
-  'Sensor Fusion & Perception',
-  'Gait Generation and Balance Control',
-  'Ethics and Safety in Humanoid AI',
-  'Advanced Manipulation Techniques',
-  'Real-Time Control Systems',
-];
-
+// --- Content Preview ---
 function ContentPreview() {
-  // ... (Component code remains the same as before)
   return (
     <section className={clsx('container margin-top--xl margin-bottom--xl', styles.contentPreview)}>
       <Heading as="h2" className="text--center margin-bottom--lg">
@@ -104,16 +114,14 @@ function ContentPreview() {
           <motion.div
             key={index}
             className="col col--4 margin-bottom--md"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.3, delay: index * 0.05 }}
           >
-            <div className={clsx('card', styles.topicCard)}>
+            <div className={clsx('card', styles.topicCard)} style={{ borderLeft: '4px solid #2e8555' }}>
               <div className="card__body">
-                <p>
-                  <strong>{topic}</strong>
-                </p>
+                <p><strong>{topic}</strong></p>
               </div>
             </div>
           </motion.div>
@@ -123,8 +131,61 @@ function ContentPreview() {
   );
 }
 
+// --- Call-to-Action ---
+function CallToAction() {
+  return (
+    <motion.div
+      className={clsx('hero hero--primary margin-top--xl', styles.ctaSection)}
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className="container text--center">
+        <h2>Get Started with Physical AI & Humanoid Robotics</h2>
+        <p>Access practical examples, code, and robotics insights from our textbook.</p>
+        <a
+          className="button button--secondary button--lg"
+          href="https://github.com/mehdiafatima/AI-Spec-Driven-Book/tree/main"
+        >
+          Explore on GitHub
+        </a>
+      </div>
+    </motion.div>
+  );
+}
 
-// --- Export Default Function ---
+// --- Testimonials Section ---
+function TestimonialsSection() {
+  return (
+    <section className="container margin-top--xl margin-bottom--xl">
+      <Heading as="h2" className="text--center margin-bottom--lg">
+        What Experts Say
+      </Heading>
+      <div className="row">
+        {Testimonials.map((t, index) => (
+          <motion.div
+            key={index}
+            className="col col--6 margin-bottom--md"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+          >
+            <div className={clsx('card padding--lg')}>
+              <blockquote>
+                <p>"{t.quote}"</p>
+                <footer>- {t.author}</footer>
+              </blockquote>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// --- Homepage Component ---
 export default function HomepageFeatures() {
   return (
     <>
@@ -138,6 +199,7 @@ export default function HomepageFeatures() {
         </div>
       </section>
       <ContentPreview />
+      <TestimonialsSection />
       <CallToAction />
     </>
   );
